@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Сайты и Telegram-боты для салонов и малого бизнеса · под ключ за 2–5 дней</title>
+<meta name="description" content="Делаю Telegram-боты записи и сайты для барбершопов, салонов, репетиторов и кафе. Под ключ за 2–5 дней. От 12 000 ₽. Самозанятый." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #111111;
+    --bg-3: #1a1a1a;
+    --fg: #ededed;
+    --muted: #888888;
+    --accent: #4ade80;
+    --accent-dim: #22c55e;
+    --line: #262626;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.05; }
+  h1 { font-size: clamp(48px, 7vw, 96px); font-weight: 800; }
+  h2 { font-size: clamp(34px, 4.5vw, 56px); font-weight: 800; margin-bottom: 16px; }
+  h3 { font-size: 22px; font-weight: 700; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .accent { color: var(--accent); }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; max-width: 1180px; margin: 0 auto; }
+  .logo { font-weight: 800; font-size: 18px; letter-spacing: -0.02em; }
+  .logo .dot { color: var(--accent); }
+  nav ul { display: flex; gap: 26px; list-style: none; }
+  nav a { color: var(--muted); font-size: 14px; font-weight: 500; transition: color .2s; }
+  nav a:hover { color: var(--fg); }
+  @media (max-width: 800px) { nav ul { display: none; } }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform .15s, background .2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--accent); color: #0a0a0a; }
+  .btn-primary:hover { background: var(--accent-dim); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero */
+  .hero { padding: 100px 0 80px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(74,222,128,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.3);
+    color: var(--accent);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .hero-tag .live { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 { margin-bottom: 24px; }
+  .hero h1 .grad {
+    background: linear-gradient(120deg, #4ade80, #06b6d4 50%, #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p.lead {
+    color: var(--muted);
+    font-size: clamp(17px, 1.6vw, 21px);
+    max-width: 660px;
+    margin-bottom: 36px;
+  }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .hero-meta { display: flex; gap: 28px; margin-top: 50px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+  .hero-meta div span { color: var(--accent); font-weight: 700; }
+
+  /* Section base */
+  section { padding: 90px 0; }
+  .eyebrow {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .head { margin-bottom: 60px; max-width: 760px; }
+  .head p { color: var(--muted); font-size: 17px; margin-top: 12px; }
+
+  /* Cases */
+  .cases { background: var(--bg); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .case {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    padding: 60px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .case:last-child { border-bottom: none; }
+  .case-reverse { grid-template-columns: 1fr 1.1fr; }
+  .case-reverse .case-text { order: 2; }
+  @media (max-width: 900px) {
+    .case, .case-reverse { grid-template-columns: 1fr; gap: 30px; }
+    .case-reverse .case-text { order: unset; }
+  }
+  .case-no { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 14px; margin-bottom: 12px; }
+  .case h3 { font-size: 32px; margin-bottom: 14px; }
+  .case p.desc { color: var(--muted); font-size: 16px; margin-bottom: 22px; }
+  .case .features { list-style: none; margin-bottom: 28px; }
+  .case .features li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--fg);
+    font-size: 15px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .case .features li::before {
+    content: "→";
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .case .meta { display: flex; gap: 22px; color: var(--muted); font-size: 13px; margin-bottom: 24px; flex-wrap: wrap; }
+  .case .meta b { color: var(--fg); }
+  .case-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .case-img {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--bg-2);
+    transition: transform .25s;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  }
+  .case-img:hover { transform: translateY(-3px); }
+  .case-img img { width: 100%; height: auto; display: block; }
+
+  /* Bot mockup */
+  .bot-mock {
+    background: linear-gradient(180deg, #17212b 0%, #0e1620 100%);
+    padding: 22px 18px 26px;
+    border-radius: 14px;
+  }
+  .bot-mock .topbar {
+    display: flex; align-items: center; gap: 12px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 16px;
+  }
+  .bot-mock .ava {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, #ffb347, #ff7e5f);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700;
+  }
+  .bot-mock .name { color: white; font-weight: 600; font-size: 15px; }
+  .bot-mock .name small { display: block; color: rgba(255,255,255,0.5); font-size: 12px; font-weight: 400; }
+  .bot-mock .msg {
+    background: #182533;
+    color: #f0f0f0;
+    padding: 11px 14px;
+    border-radius: 14px 14px 14px 4px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    max-width: 88%;
+  }
+  .bot-mock .me {
+    background: #2b5278;
+    color: white;
+    border-radius: 14px 14px 4px 14px;
+    margin-left: auto;
+    text-align: right;
+  }
+  .bot-mock .btns {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
+    margin: 6px 0 14px;
+  }
+  .bot-mock .btn-tg {
+    background: rgba(74,222,128,0.12);
+    border: 1px solid rgba(74,222,128,0.4);
+    color: var(--accent);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* Services */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } }
+  .service {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    transition: border-color .2s, transform .15s;
+  }
+  .service:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .service .icon { font-size: 30px; margin-bottom: 18px; }
+  .service h3 { margin-bottom: 8px; }
+  .service .price { color: var(--accent); font-weight: 700; margin: 10px 0 14px; font-family: 'JetBrains Mono', monospace; font-size: 14px; }
+  .service p { color: var(--muted); font-size: 15px; }
+
+  /* Process */
+  .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .process-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .process-grid { grid-template-columns: 1fr; } }
+  .step {
+    padding: 26px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+  }
+  .step .num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent); color: #0a0a0a;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; margin-bottom: 16px; font-size: 14px;
+  }
+  .step h3 { font-size: 18px; margin-bottom: 6px; }
+  .step p { color: var(--muted); font-size: 14px; }
+
+  /* Trust */
+  .trust { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  @media (max-width: 800px) { .trust-grid { grid-template-columns: 1fr; } }
+  .trust-item { text-align: center; padding: 24px; }
+  .trust-item .icon { font-size: 36px; margin-bottom: 14px; }
+  .trust-item h3 { margin-bottom: 8px; }
+  .trust-item p { color: var(--muted); font-size: 15px; }
+
+  /* CTA final */
+  .final {
+    background: linear-gradient(135deg, rgba(74,222,128,0.06) 0%, rgba(34,211,238,0.06) 100%);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 60px;
+    text-align: center;
+    margin: 60px 0;
+  }
+  @media (max-width: 700px) { .final { padding: 40px 24px; margin: 30px 0; } }
+  .final h2 { margin-bottom: 18px; }
+  .final p { color: var(--muted); font-size: 18px; max-width: 580px; margin: 0 auto 32px; }
+
+  /* Footer */
+  footer { padding: 60px 0 40px; border-top: 1px solid var(--line); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 32px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .footer-grid h4 { color: var(--fg); font-size: 15px; margin-bottom: 14px; }
+  .footer-grid a { display: block; padding: 4px 0; color: var(--muted); }
+  .footer-grid a:hover { color: var(--accent); }
+  .copyright { padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="logo">Максим Иванов <span class="dot">·</span> dev</a>
+    <nav>
+      <ul>
+        <li><a href="#cases">Кейсы</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#process">Как работаем</a></li>
+        <li><a href="#contact">Связаться</a></li>
+      </ul>
+    </nav>
+    <a href="https://t.me/makstheonly" class="btn btn-primary">Написать в Telegram</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-tag"><span class="live"></span> Доступен для новых заказов</div>
+    <h1>Сайты и боты для салонов<br /><span class="grad">под ключ за 2–5 дней</span></h1>
+    <p class="lead">Помогаю барбершопам, салонам красоты, репетиторам и небольшим бизнесам закрывать заявки 24/7 — без админа и пропущенных звонков. Беру проект и сдаю его рабочим, не оставляю «допили сам».</p>
+    <div class="hero-cta">
+      <a href="https://t.me/makstheonly" class="btn btn-primary">Обсудить проект →</a>
+      <a href="#cases" class="btn btn-ghost">Посмотреть кейсы</a>
+    </div>
+    <div class="hero-meta">
+      <div><span>2–5 дней</span> · средний срок</div>
+      <div><span>от 12 000 ₽</span> · стартовый пакет</div>
+      <div><span>Самозанятый</span> · работаю по чеку и договору</div>
+    </div>
+  </div>
+</section>
+
+<section class="cases" id="cases">
+  <div class="container">
+    <div class="head">
+      <div class="eyebrow">Кейсы</div>
+      <h2>Что я делал</h2>
+      <p>Все примеры ниже — рабочие, открываются по ссылке. Реальные клиенты по NDA не показываю — для портфолио сделал три демо в нишах, в которых я работаю.</p>
+    </div>
+
+    <!-- Case 1 -->
+    <div class="case">
+      <div class="case-text">
+        <div class="case-no">КЕЙС 01</div>
+        <h3>Лендинг для барбершопа «БРИТАЯ»</h3>
+        <p class="desc">Полностью кастомный лендинг для мужской парикмахерской. Тёмная брендовая тема, структура «оффер → услуги → мастера → отзывы → запись». Адаптивный, грузится за &lt;1.5 секунды.</p>
+        <ul class="features">
+          <li>Кастомный дизайн под бренд (без шаблонов)</li>
+          <li>Форма онлайн-записи с уведомлением админу в Telegram</li>
+          <li>Мобильная версия — отдельная вёрстка для телефонов</li>
+          <li>SEO-настройка (мета-теги, OG, Schema.org Restaurant)</li>
+          <li>Деплой на Vercel — бесплатный хостинг и SSL</li>
+        </ul>
+        <div class="meta">
+          <div><b>Стек:</b> HTML/CSS/JS</div>
+          <div><b>Срок:</b> 4 дня</div>
+          <div><b>Бюджет:</b> 18 000 ₽</div>
+        </div>
+        <div class="case-ctas">
+          <a href="https://demo1-barbershop-landing-rbloveej.devinapps.com" target="_blank" rel="noopener" class="btn btn-primary">Открыть сайт →</a>
+        </div>
+      </div>
+      <a href="https://demo1-barbershop-landing-rbloveej.devinapps.com" target="_blank" rel="noopener" class="case-img">
+        <img src="screenshots/demo1.png" alt="Лендинг барбершопа БРИТАЯ" />
+      </a>
+    </div>
+
+    <!-- Case 2 -->
+    <div class="case case-reverse">
+      <div class="case-text">
+        <div class="case-no">КЕЙС 02</div>
+        <h3>Telegram-бот записи в барбершоп</h3>
+        <p class="desc">Бот для записи к мастерам на конкретное время. Полный сценарий за 30 секунд: услуга → мастер → день → окно → телефон → подтверждение. Админ получает заявку моментально, клиент — напоминание за сутки.</p>
+        <ul class="features">
+          <li>Воронка записи в 5 шагов с inline-кнопками</li>
+          <li>Уведомление админу в чат при каждой новой заявке</li>
+          <li>Автонапоминание клиенту за 24 часа до визита</li>
+          <li>Команда /мои_записи и /отменить</li>
+          <li>База в Google Sheets — админ видит всё в одной таблице</li>
+        </ul>
+        <div class="meta">
+          <div><b>Стек:</b> Python · aiogram 3 · APScheduler</div>
+          <div><b>Срок:</b> 5 дней</div>
+          <div><b>Бюджет:</b> 25 000 ₽</div>
+        </div>
+        <div class="case-ctas">
+          <a href="#contact" class="btn btn-primary">Хочу такой же →</a>
+        </div>
+      </div>
+      <div class="case-img bot-mock">
+        <div class="topbar">
+          <div class="ava">Б</div>
+          <div class="name">БРИТАЯ · бот записи<small>в сети</small></div>
+        </div>
+        <div class="msg">Привет! Это бот <b>БРИТАЯ</b> — мужской парикмахерской на Тверской. Здесь можно записаться к мастеру за минуту.</div>
+        <div class="btns">
+          <div class="btn-tg">✂ Записаться</div>
+          <div class="btn-tg">📋 Мои записи</div>
+          <div class="btn-tg">💰 Цены</div>
+          <div class="btn-tg">📍 Адрес</div>
+        </div>
+        <div class="msg me">✂ Записаться</div>
+        <div class="msg">Выбери услугу:</div>
+        <div class="btns">
+          <div class="btn-tg">✂ Стрижка · 1500 ₽</div>
+          <div class="btn-tg">🪒 Борода · 1200 ₽</div>
+          <div class="btn-tg">✨ Стрижка+борода · 2500 ₽</div>
+          <div class="btn-tg">👑 Бритьё · 2000 ₽</div>
+        </div>
+        <div class="msg me">✨ Стрижка + борода</div>
+        <div class="msg">Какой мастер?</div>
+        <div class="btns">
+          <div class="btn-tg">Алексей</div>
+          <div class="btn-tg">Михаил</div>
+          <div class="btn-tg">Дмитрий</div>
+          <div class="btn-tg">Любой</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 3 -->
+    <div class="case">
+      <div class="case-text">
+        <div class="case-no">КЕЙС 03</div>
+        <h3>Лендинг для репетитора по математике</h3>
+        <p class="desc">Продающий одностраничник под частного репетитора. Структура: оффер → доказательства результата → программа → личный бренд → 3 пакета цен → форма записи на бесплатный пробный.</p>
+        <ul class="features">
+          <li>Авторский дизайн в светлой теме под образование</li>
+          <li>Три пакета цен (пробный · 8 уроков · разовый)</li>
+          <li>Форма записи на пробный с уведомлением в Telegram</li>
+          <li>FAQ-блок снимает 80% возражений до контакта</li>
+          <li>Подключение Я.Метрики для аналитики конверсии</li>
+        </ul>
+        <div class="meta">
+          <div><b>Стек:</b> HTML/CSS/JS</div>
+          <div><b>Срок:</b> 3 дня</div>
+          <div><b>Бюджет:</b> 15 000 ₽</div>
+        </div>
+        <div class="case-ctas">
+          <a href="https://demo3-tutor-landing-vldgsbvo.devinapps.com" target="_blank" rel="noopener" class="btn btn-primary">Открыть сайт →</a>
+        </div>
+      </div>
+      <a href="https://demo3-tutor-landing-vldgsbvo.devinapps.com" target="_blank" rel="noopener" class="case-img">
+        <img src="screenshots/demo3.png" alt="Лендинг репетитора Анна Сорокина" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="head">
+      <div class="eyebrow">Услуги</div>
+      <h2>Что и за сколько делаю</h2>
+      <p>Цены — стартовые. Финальная зависит от объёма брифа. Любой проект могу разложить на 3 пакета (Старт · Стандарт · Премиум) — пишите, расскажу что во что входит.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service">
+        <div class="icon">🌐</div>
+        <h3>Лендинги и мини-сайты</h3>
+        <div class="price">от 8 000 ₽ · 2–4 дня</div>
+        <p>Tilda или собственный код. Адаптив, форма с уведомлением, базовое SEO, подключение домена.</p>
+      </div>
+      <div class="service">
+        <div class="icon">🤖</div>
+        <h3>Telegram-боты записи</h3>
+        <div class="price">от 12 000 ₽ · 3–5 дней</div>
+        <p>Бот для салонов, барбершопов, мастеров. Воронка записи, уведомления админу, напоминания клиенту.</p>
+      </div>
+      <div class="service">
+        <div class="icon">⚙</div>
+        <h3>Автоматизации и интеграции</h3>
+        <div class="price">от 5 000 ₽ · 1–3 дня</div>
+        <p>Связка сайта с CRM/Google Sheets, парсеры, рассылки, n8n-сценарии, Apps Script.</p>
+      </div>
+      <div class="service">
+        <div class="icon">💳</div>
+        <h3>Онлайн-оплата</h3>
+        <div class="price">от 5 000 ₽ · 1 день</div>
+        <p>ЮKassa, СБП, CloudPayments. Подключаю к сайту, в Telegram-бота или напрямую к форме.</p>
+      </div>
+      <div class="service">
+        <div class="icon">📊</div>
+        <h3>Админ-панели</h3>
+        <div class="price">от 15 000 ₽ · 5–7 дней</div>
+        <p>Веб-админка под бот или сайт: список заявок, фильтры, экспорт в CSV, графики выручки.</p>
+      </div>
+      <div class="service">
+        <div class="icon">🛠</div>
+        <h3>Поддержка / абонентка</h3>
+        <div class="price">от 3 000 ₽/мес</div>
+        <p>Мелкие правки, мониторинг работы бота/сайта, изменения контента. До 1–3 часов в месяц.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="icon">🧾</div>
+        <h3>Самозанятый</h3>
+        <p>Выдаю чеки через «Мой налог». Работаю и с физлицами, и с ИП, и с ООО.</p>
+      </div>
+      <div class="trust-item">
+        <div class="icon">📄</div>
+        <h3>Договор-оферта</h3>
+        <p>Прозрачные условия: предоплата 30%, сроки, правки 14 дней бесплатно. Никаких сюрпризов.</p>
+      </div>
+      <div class="trust-item">
+        <div class="icon">⚡</div>
+        <h3>Отвечаю в течение часа</h3>
+        <p>В рабочее время в Telegram. На обсуждение проекта обычно нужно 15–30 минут диалога.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container">
+    <div class="head">
+      <div class="eyebrow">Процесс</div>
+      <h2>Как мы работаем</h2>
+      <p>Без сложных процессов и согласований. Четыре шага — и проект готов.</p>
+    </div>
+    <div class="process-grid">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Бриф</h3>
+        <p>15–30 минут диалога в Telegram. Я задаю 5–7 вопросов, чтобы понять задачу.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>КП и предоплата</h3>
+        <p>В тот же день присылаю КП с двумя вариантами комплектации, ценой и планом по дням. После предоплаты 30% начинаю.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Работа</h3>
+        <p>Делаю по плану. На середине срока показываю промежуточный результат — вы корректируете до финиша.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h3>Сдача и поддержка</h3>
+        <p>Передаю работающий продукт + инструкцию. 14 дней — правки бесплатно. Дальше можно на абонентку.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="final">
+      <div class="eyebrow">Связаться</div>
+      <h2>Расскажите о проекте</h2>
+      <p>Напишите в Telegram — отвечаю в течение часа в рабочее время. На обсуждение проекта нужно 15–30 минут — пришлю КП в тот же день.</p>
+      <a href="https://t.me/makstheonly" class="btn btn-primary">Написать в Telegram →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Максим Иванов · сайты и боты</h4>
+        <p>Помогаю салонам, барбершопам, школам и кафе закрывать заявки 24/7. Самозанятый, ИНН 623410692906. С 2026 года.</p>
+      </div>
+      <div>
+        <h4>Услуги</h4>
+        <a href="#services">Лендинги</a>
+        <a href="#services">Telegram-боты</a>
+        <a href="#services">Автоматизации</a>
+        <a href="#services">Поддержка</a>
+      </div>
+      <div>
+        <h4>Связь</h4>
+        <a href="https://t.me/makstheonly">@makstheonly</a>
+        <a href="mailto:makstheonly@yandex.ru">makstheonly@yandex.ru</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 Максим Иванов. Сделал сам, разумеется.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

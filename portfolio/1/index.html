@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>БРИТАЯ — мужская парикмахерская в центре Москвы</title>
+<meta name="description" content="Барбершоп БРИТАЯ. Стрижка, борода, королевское бритьё. Запись онлайн за 30 секунд. Тверская, 18." />
+<meta property="og:title" content="БРИТАЯ — мужская парикмахерская" />
+<meta property="og:description" content="Стрижка от 1500 ₽. Запись онлайн. Тверская, 18." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0d0d;
+    --bg-2: #161616;
+    --bg-3: #1f1f1f;
+    --fg: #f4f1ea;
+    --muted: #9c9690;
+    --gold: #c9a14a;
+    --gold-2: #e0bc6a;
+    --line: #2a2a2a;
+    --radius: 14px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display { font-family: 'Bebas Neue', 'Inter', sans-serif; letter-spacing: 0.02em; line-height: 1.05; }
+  h2 { font-size: clamp(36px, 6vw, 64px); margin-bottom: 12px; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .gold { color: var(--gold-2); }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; max-width: 1180px; margin: 0 auto; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.08em; }
+  .logo .dot { color: var(--gold-2); }
+  nav ul { display: flex; gap: 28px; list-style: none; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color .2s; }
+  nav a:hover { color: var(--fg); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: transform .15s, background .2s, color .2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: var(--gold); color: #0d0d0d; }
+  .btn-primary:hover { background: var(--gold-2); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-2); }
+  @media (max-width: 768px) { nav ul { display: none; } }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.85) 100%),
+      url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+  }
+  .hero-content { position: relative; z-index: 2; padding: 80px 0; }
+  .hero-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid var(--gold);
+    color: var(--gold-2);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(56px, 10vw, 128px);
+    margin-bottom: 18px;
+  }
+  .hero p.lead {
+    color: var(--muted);
+    font-size: clamp(16px, 2vw, 20px);
+    max-width: 560px;
+    margin-bottom: 36px;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Sections */
+  section { padding: 100px 0; }
+  .eyebrow { color: var(--gold-2); font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px; }
+  .section-head { margin-bottom: 56px; max-width: 720px; }
+  .section-head p { color: var(--muted); font-size: 17px; }
+
+  /* Services */
+  .services { background: var(--bg-2); }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--bg-3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: border-color .2s, transform .15s;
+  }
+  .card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .card .icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: rgba(201,161,74,0.12);
+    color: var(--gold-2);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px;
+    font-size: 22px;
+  }
+  .card h3 { font-size: 30px; margin-bottom: 8px; }
+  .card .price { color: var(--gold-2); font-weight: 600; margin-bottom: 14px; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  /* Masters */
+  .masters { background: var(--bg); }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  @media (max-width: 1000px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px)  { .grid-4 { grid-template-columns: 1fr; } }
+  .master {
+    background: var(--bg-2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    transition: transform .2s;
+  }
+  .master:hover { transform: translateY(-4px); }
+  .master img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; filter: grayscale(0.15); }
+  .master-info { padding: 18px 20px 22px; }
+  .master-info h3 { font-size: 24px; }
+  .master-info span { color: var(--muted); font-size: 13px; }
+
+  /* Reviews */
+  .reviews { background: var(--bg-2); }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+  .review { padding: 30px; background: var(--bg-3); border-radius: var(--radius); border: 1px solid var(--line); }
+  .review .stars { color: var(--gold-2); margin-bottom: 14px; letter-spacing: 2px; }
+  .review p { font-size: 16px; margin-bottom: 18px; }
+  .review .author { color: var(--muted); font-size: 14px; }
+
+  /* Booking form */
+  .book {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  @media (max-width: 900px) { .book-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .form { background: var(--bg-3); padding: 38px; border-radius: var(--radius); border: 1px solid var(--line); }
+  .form .field { margin-bottom: 16px; }
+  .form label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+  .form input, .form select {
+    width: 100%; padding: 13px 16px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--fg);
+    font-size: 15px;
+    font-family: inherit;
+    transition: border-color .2s;
+  }
+  .form input:focus, .form select:focus { outline: none; border-color: var(--gold); }
+  .form button { width: 100%; margin-top: 10px; padding: 16px; font-size: 15px; }
+  .form .ok { display: none; padding: 16px; background: rgba(201,161,74,0.12); border: 1px solid var(--gold); border-radius: 10px; color: var(--gold-2); margin-top: 14px; font-weight: 500; }
+  .form .ok.show { display: block; }
+
+  /* Footer */
+  footer { padding: 56px 0 32px; background: var(--bg-2); border-top: 1px solid var(--line); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 32px; }
+  @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; gap: 24px; } }
+  .footer-grid h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.06em; color: var(--gold-2); margin-bottom: 14px; }
+  .footer-grid p, .footer-grid a { color: var(--muted); font-size: 14px; text-decoration: none; display: block; margin-bottom: 6px; }
+  .footer-grid a:hover { color: var(--fg); }
+  .copyright { padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; text-align: center; }
+
+  /* Floating CTA */
+  .float-cta {
+    position: fixed; bottom: 22px; right: 22px;
+    z-index: 40;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+  @media (max-width: 600px) { .float-cta { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 13px; } }
+</style>
+</head>
+<body>
+<a href="https://makstheonly.ru/#cases" class="mts-back-bar" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 16px;background:#13141a;color:#ededed;text-decoration:none;font:500 13px/1.4 system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;border-bottom:1px solid #2d2f3a;letter-spacing:0.01em;">
+  <span style="color:#9498a4;">←</span>
+  <span>Это пример работы из портфолио <b style="color:#4ade80;font-weight:600;">makstheonly.ru</b></span>
+  <span style="color:#9498a4;">·</span>
+  <span style="color:#9498a4;">Барбершоп «БРИТАЯ»</span>
+</a>
+
+
+<header>
+  <div class="nav">
+    <a href="#top" class="logo">БРИТА<span class="dot">Я</span></a>
+    <nav>
+      <ul>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#masters">Мастера</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a href="#book" class="btn btn-primary">Записаться</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="container hero-content">
+    <span class="hero-tag">★ С 2014 года в центре Москвы</span>
+    <h1>МУЖСКАЯ<br />ПАРИКМАХЕРСКАЯ</h1>
+    <p class="lead">Стрижки, бороды и королевское бритьё опасной бритвой. Без записи на 2 недели вперёд — приходите когда удобно. Запись онлайн за 30 секунд.</p>
+    <div class="hero-ctas">
+      <a href="#book" class="btn btn-primary">Записаться онлайн</a>
+      <a href="tel:+74951234567" class="btn btn-ghost">+7 (495) 123-45-67</a>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Услуги</div>
+      <h2>ЧТО МЫ ДЕЛАЕМ</h2>
+      <p>Каждая стрижка — это тайминг, горячее полотенце, коньяк или эспрессо и разговор. Никакой суеты.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">✂</div>
+        <h3>Стрижка</h3>
+        <div class="price">от 1 500 ₽ · 45 мин</div>
+        <p>Классика, фейд, андеркат, текстурная. Подбираем под форму головы и стиль жизни.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🪒</div>
+        <h3>Борода</h3>
+        <div class="price">от 1 200 ₽ · 30 мин</div>
+        <p>Моделирование, окантовка опасной бритвой, уход маслом и бальзамом.</p>
+      </div>
+      <div class="card">
+        <div class="icon">👑</div>
+        <h3>Королевское бритьё</h3>
+        <div class="price">от 2 000 ₽ · 50 мин</div>
+        <p>Опасная бритва, горячий компресс, скраб, маска, успокаивающий бальзам.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📸</div>
+        <h3>Стрижка + борода</h3>
+        <div class="price">2 500 ₽ · 75 мин</div>
+        <p>Самый популярный комбо-пакет. Экономия 200 ₽.</p>
+      </div>
+      <div class="card">
+        <div class="icon">👶</div>
+        <h3>Детская стрижка</h3>
+        <div class="price">1 200 ₽ · 30 мин</div>
+        <p>До 10 лет. Игрушки, мультики и максимум терпения.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎁</div>
+        <h3>Подарочный сертификат</h3>
+        <div class="price">от 1 500 ₽</div>
+        <p>На любую сумму. Электронный или физический. Срок действия — 6 месяцев.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="masters" id="masters">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Команда</div>
+      <h2>НАШИ МАСТЕРА</h2>
+      <p>Топ-3 в Москве по версии Yandex Карт. Стажировки в Лондоне и Барселоне.</p>
+    </div>
+    <div class="grid-4">
+      <div class="master">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Алексей" />
+        <div class="master-info"><h3>Алексей</h3><span>Старший барбер · 9 лет</span></div>
+      </div>
+      <div class="master">
+        <img src="https://images.unsplash.com/photo-1567894340315-735d7c361db0?auto=format&fit=crop&w=600&q=80" alt="Михаил" />
+        <div class="master-info"><h3>Михаил</h3><span>Барбер · 6 лет</span></div>
+      </div>
+      <div class="master">
+        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&w=600&q=80" alt="Дмитрий" />
+        <div class="master-info"><h3>Дмитрий</h3><span>Барбер · 5 лет</span></div>
+      </div>
+      <div class="master">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" alt="Иван" />
+        <div class="master-info"><h3>Иван</h3><span>Стажёр · 2 года</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Отзывы</div>
+      <h2>ЧТО ГОВОРЯТ КЛИЕНТЫ</h2>
+      <p>Рейтинг 4.9 на Yandex Картах · 1 240 отзывов · 87% возвращаются повторно.</p>
+    </div>
+    <div class="grid-2">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>«Хожу к Алексею третий год. Никаких разговоров о политике, всегда сделает то, что нужно, даже если я сам не знаю что хочу. Кофе всегда крепкий.»</p>
+        <div class="author">— Сергей К.</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>«Записался в первый раз через бот в Telegram — вся запись заняла минуту. Пришёл, ждать не пришлось вообще. Стрижка топ.»</p>
+        <div class="author">— Артём Д.</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>«Делал королевское бритьё перед свадьбой. Это было лучшее решение. Опасная бритва, горячее полотенце, тишина 50 минут.»</p>
+        <div class="author">— Павел М.</div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>«Привожу сюда сына, племянника и тестя. Каждый доволен. Это о чём-то да говорит.»</p>
+        <div class="author">— Олег В.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="container">
+    <div class="book-grid">
+      <div>
+        <div class="eyebrow">Запись</div>
+        <h2>ЗАПИШИСЬ ОНЛАЙН</h2>
+        <p style="color:var(--muted); font-size:17px; margin-bottom: 18px;">Заполни форму — мастер подтвердит время в течение 10 минут. Или напиши в Telegram-бот @britaya_bot — сам выберешь свободное окно в календаре.</p>
+        <p style="color:var(--muted); font-size:15px;">📍 Тверская 18, м. Пушкинская<br />🕒 Пн–Вс с 10:00 до 22:00<br />📞 +7 (495) 123-45-67</p>
+      </div>
+      <form class="form" id="bookForm" onsubmit="return submitForm(event)">
+        <div class="field">
+          <label>Как тебя зовут</label>
+          <input type="text" name="name" required placeholder="Иван" />
+        </div>
+        <div class="field">
+          <label>Телефон</label>
+          <input type="tel" name="phone" required placeholder="+7 (___) ___-__-__" />
+        </div>
+        <div class="field">
+          <label>Услуга</label>
+          <select name="service" required>
+            <option value="">Выбери услугу</option>
+            <option>Стрижка — 1 500 ₽</option>
+            <option>Борода — 1 200 ₽</option>
+            <option>Стрижка + борода — 2 500 ₽</option>
+            <option>Королевское бритьё — 2 000 ₽</option>
+            <option>Детская стрижка — 1 200 ₽</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Удобный мастер</label>
+          <select name="master">
+            <option>Любой свободный</option>
+            <option>Алексей</option>
+            <option>Михаил</option>
+            <option>Дмитрий</option>
+            <option>Иван</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Записаться</button>
+        <div class="ok" id="ok">Спасибо! Мы перезвоним в течение 10 минут для подтверждения. ★</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer id="contacts">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">БРИТА<span class="dot">Я</span></div>
+        <p>Мужская парикмахерская. С 2014 года стрижём правильно.</p>
+        <p style="margin-top:14px;">📍 Москва, Тверская 18<br />м. Пушкинская</p>
+      </div>
+      <div>
+        <h4>Часы работы</h4>
+        <p>Понедельник — Воскресенье<br />10:00 — 22:00<br />Без выходных</p>
+      </div>
+      <div>
+        <h4>Связаться</h4>
+        <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+        <a href="https://t.me/britaya_bot">@britaya_bot</a>
+        <a href="https://wa.me/74951234567">WhatsApp</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2014–2026 БРИТАЯ. Демо-сайт-портфолио. Все права придуманы для красоты.
+    </div>
+  </div>
+</footer>
+
+<a href="#book" class="btn btn-primary float-cta">Записаться</a>
+
+<script>
+  function submitForm(e) {
+    e.preventDefault();
+    const form = document.getElementById('bookForm');
+    const ok = document.getElementById('ok');
+    ok.classList.add('show');
+    form.querySelectorAll('input, select, button').forEach(el => el.disabled = true);
+    form.querySelector('button').textContent = 'Заявка отправлена ✓';
+    setTimeout(() => {
+      const data = new FormData(form);
+      console.log('Booking:', Object.fromEntries(data));
+    }, 100);
+    return false;
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const id = this.getAttribute('href');
+      if (id === '#') return;
+      const el = document.querySelector(id);
+      if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+
+</body>
+</html>

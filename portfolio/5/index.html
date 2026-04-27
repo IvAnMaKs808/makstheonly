@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>LACUNA Bot — Telegram-бот записи в студию маникюра</title>
+<meta name="description" content="Реальный Telegram-бот для студии маникюра LACUNA. Запись за 30 секунд: услуга → день → время → имя → телефон. С базой, проверкой пересечений и автонапоминаниями." />
+<meta property="og:title" content="LACUNA — Telegram-бот записи" />
+<meta property="og:description" content="Запись клиента за 30 секунд. Без приложения, без звонка — прямо в Telegram." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0e13;
+    --bg-2: #15171f;
+    --bg-3: #1d2029;
+    --bg-card: #1a1d26;
+    --fg: #e8eaef;
+    --muted: #8e93a3;
+    --tg: #2aabee;
+    --tg-2: #229ed9;
+    --accent: #4ade80;
+    --line: #262a35;
+    --line-strong: #343947;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 15% 5%, rgba(42,171,238,0.10), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 90% 90%, rgba(74,222,128,0.06), transparent 60%);
+  }
+  header, main, section, footer { position: relative; z-index: 1; }
+  h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.05; }
+  h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 800; }
+  h2 { font-size: clamp(28px, 3.6vw, 44px); font-weight: 800; margin-bottom: 14px; }
+  h3 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  p { font-size: 16px; color: #c8ccd6; }
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+  .accent { color: var(--accent); }
+  .tg-color { color: var(--tg); }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Back bar */
+  .mts-back-bar {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 10px 16px; background: #0a0b10; color: var(--fg);
+    text-decoration: none; font-size: 13px; border-bottom: 1px solid var(--line);
+    letter-spacing: 0.01em;
+  }
+  .mts-back-bar b { color: var(--accent); font-weight: 600; }
+  .mts-back-bar span:first-of-type, .mts-back-bar .dot { color: var(--muted); }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--tg);
+    background: rgba(42,171,238,0.1);
+    border: 1px solid rgba(42,171,238,0.3);
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 18px;
+  }
+  .hero h1 { margin-bottom: 18px; }
+  .hero p.lead { font-size: clamp(17px, 2.2vw, 22px); color: var(--muted); max-width: 720px; margin: 0 auto 36px; }
+  .cta-row {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 28px; border-radius: 10px;
+    font-weight: 600; font-size: 16px;
+    transition: transform 0.15s ease, background 0.15s ease;
+    cursor: pointer; border: none;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-tg {
+    background: linear-gradient(135deg, var(--tg) 0%, var(--tg-2) 100%);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(42,171,238,0.3);
+  }
+  .btn-tg:hover { box-shadow: 0 6px 28px rgba(42,171,238,0.45); }
+  .btn-ghost {
+    background: transparent; color: var(--fg);
+    border: 1px solid var(--line-strong);
+  }
+  .btn-ghost:hover { background: var(--bg-3); }
+  .hero-meta {
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    color: var(--muted); font-size: 14px;
+  }
+  .hero-meta span { display: inline-flex; align-items: center; gap: 6px; }
+  .hero-meta b { color: var(--fg); font-weight: 600; }
+
+  /* Demo phone mock */
+  .demo {
+    padding: 60px 0;
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 880px) { .demo-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .demo-text h2 { font-size: clamp(28px, 4vw, 40px); }
+  .demo-text p { color: var(--muted); margin-bottom: 16px; }
+  .features { list-style: none; margin: 24px 0; }
+  .features li {
+    padding: 10px 0 10px 30px; position: relative;
+    font-size: 15px; color: #c8ccd6;
+    border-bottom: 1px solid var(--line);
+  }
+  .features li::before {
+    content: '✓';
+    position: absolute; left: 0; top: 10px;
+    color: var(--tg); font-weight: 700;
+  }
+  .features li:last-child { border-bottom: none; }
+
+  /* Phone mock */
+  .phone {
+    background: #1a1d26;
+    border: 1px solid var(--line-strong);
+    border-radius: 22px;
+    padding: 14px;
+    max-width: 380px;
+    margin: 0 auto;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+  }
+  .phone-header {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px 14px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 14px;
+  }
+  .phone-ava {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--tg), var(--tg-2));
+    color: #fff; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+  }
+  .phone-title { font-weight: 600; font-size: 14px; }
+  .phone-status { color: var(--accent); font-size: 11px; }
+  .msg {
+    padding: 10px 13px; border-radius: 12px;
+    background: var(--bg-3); color: var(--fg);
+    font-size: 13.5px; line-height: 1.45;
+    margin-bottom: 8px; max-width: 88%;
+  }
+  .msg.me {
+    background: var(--tg);
+    color: #fff;
+    margin-left: auto;
+  }
+  .btns-row {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 12px;
+  }
+  .ibtn {
+    background: var(--bg-3);
+    border: 1px solid var(--line-strong);
+    color: var(--fg);
+    padding: 6px 10px; border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .msg b { font-weight: 600; }
+
+  /* Feature blocks */
+  .features-section { padding: 80px 0; border-top: 1px solid var(--line); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    margin-top: 36px;
+  }
+  .feat-card {
+    padding: 28px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .feat-card h3 { color: var(--fg); margin-bottom: 8px; }
+  .feat-card p { font-size: 14.5px; color: var(--muted); margin: 0; }
+  .feat-icon {
+    font-size: 26px; margin-bottom: 14px;
+  }
+
+  /* Tech / source */
+  .tech { padding: 80px 0; border-top: 1px solid var(--line); background: var(--bg-2); }
+  .tech-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 880px) { .tech-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .tech ul { list-style: none; }
+  .tech li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 14.5px;
+  }
+  .tech li:last-child { border-bottom: none; }
+  .tech li b { color: var(--muted); font-weight: 400; }
+  .tech li span { font-family: 'JetBrains Mono', monospace; color: var(--fg); }
+
+  /* CTA */
+  .cta-section {
+    padding: 80px 0; text-align: center; border-top: 1px solid var(--line);
+  }
+  .cta-section p { max-width: 600px; margin: 0 auto 28px; }
+
+  footer {
+    padding: 40px 0 60px; text-align: center;
+    color: var(--muted); font-size: 13px;
+    border-top: 1px solid var(--line);
+  }
+  footer a { color: var(--tg); }
+</style>
+</head>
+<body>
+<a href="https://makstheonly.ru/#cases" class="mts-back-bar">
+  <span>←</span>
+  <span>Это пример работы из портфолио <b>makstheonly.ru</b></span>
+  <span class="dot">·</span>
+  <span>LACUNA Bot — Telegram-бот записи</span>
+</a>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">— ЖИВОЙ ПРИМЕР · Telegram-бот</div>
+    <h1>LACUNA Bot — запись<br>в студию маникюра<br>за <span class="tg-color">30 секунд</span></h1>
+    <p class="lead">Реальный работающий бот, не мокап. Открой в Telegram, нажми Старт и попробуй записаться сам — увидишь весь сценарий: услуга → день → окно → имя → телефон → подтверждение.</p>
+    <div class="cta-row">
+      <a href="https://t.me/lacuna_studio_bot" class="btn btn-tg" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42 10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.706h-.002l.002.001-.314 4.692c.46 0 .663-.211.921-.46l2.211-2.15 4.599 3.397c.848.467 1.457.227 1.668-.785l3.019-14.228c.309-1.239-.473-1.8-1.282-1.434z"/></svg>
+        Открыть в Telegram →
+      </a>
+      <a href="https://makstheonly.ru/portfolio/3/" class="btn btn-ghost">Сайт студии LACUNA</a>
+    </div>
+    <div class="hero-meta">
+      <span>📅 Сдано: <b>1 день</b></span>
+      <span>💼 Бюджет: <b>от 12 000 ₽</b></span>
+      <span>⚙️ Стек: <b>Python · aiogram 3 · SQLite</b></span>
+    </div>
+  </div>
+</section>
+
+<section class="demo">
+  <div class="container demo-grid">
+    <div class="demo-text">
+      <div class="eyebrow" style="background: rgba(74,222,128,0.1); border-color: rgba(74,222,128,0.3); color: var(--accent);">Что внутри</div>
+      <h2>Полный сценарий записи без звонков и приложений</h2>
+      <p>Клиент делает 5 кликов и получает время в студии. Запись падает в базу, владелец — в чат, клиент за 24 часа получает напоминание.</p>
+      <ul class="features">
+        <li>6 услуг с разной длительностью (60–150 минут)</li>
+        <li>Расписание адаптируется под длительность услуги</li>
+        <li>Проверка пересечений: невозможно записаться на занятый слот</li>
+        <li>Уведомление владельцу прямо в личный чат при каждой новой заявке</li>
+        <li>Авто-напоминание клиенту за 24 часа до визита</li>
+        <li>Команды /start, /отменить, /admin <code style="background:#1d2029;padding:2px 6px;border-radius:3px;font-size:12px;">&lt;secret&gt;</code></li>
+      </ul>
+    </div>
+    <div class="phone">
+      <div class="phone-header">
+        <div class="phone-ava">L</div>
+        <div>
+          <div class="phone-title">LACUNA Studio · бот записи</div>
+          <div class="phone-status">● в сети</div>
+        </div>
+      </div>
+      <div class="msg">Здравствуйте! Это бот <b>LACUNA Studio</b> — студии маникюра в Рязани.<br><br>Запись на удобное время за 30 секунд.</div>
+      <div class="btns-row">
+        <span class="ibtn">💅 Записаться</span>
+        <span class="ibtn">📋 Мои записи</span>
+        <span class="ibtn">📍 Адрес</span>
+      </div>
+      <div class="msg me">💅 Записаться</div>
+      <div class="msg">Выберите услугу:</div>
+      <div class="btns-row">
+        <span class="ibtn">🤍 Классический · 1200 ₽</span>
+        <span class="ibtn">💅 Маникюр+гель · 2200 ₽</span>
+        <span class="ibtn">💎 Моделирование · 3400 ₽</span>
+      </div>
+      <div class="msg me">💅 Маникюр + гель-лак</div>
+      <div class="msg">Выберите день:</div>
+      <div class="btns-row">
+        <span class="ibtn">Пн · 28 окт</span>
+        <span class="ibtn">Вт · 29 окт</span>
+        <span class="ibtn">Ср · 30 окт</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="eyebrow">Технические особенности</div>
+      <h2>Что делает этот бот не игрушкой, а рабочим инструментом</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🛡️</div>
+        <h3>Конфликты слотов</h3>
+        <p>Бот сравнивает длительность каждой услуги и не разрешит записать двух клиентов на пересекающееся время. Один мастер — один клиент в час.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">💾</div>
+        <h3>SQLite + миграции</h3>
+        <p>База на диске сохраняется между перезапусками. Все записи, статусы, статус напоминаний — в одной таблице с автомиграцией при старте.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⏰</div>
+        <h3>Шедулер на APScheduler</h3>
+        <p>Каждые 15 минут бот проверяет ближайшие визиты и шлёт клиенту напоминание ровно за 24 часа. Дважды одному человеку не пришлёт.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔔</div>
+        <h3>Защищённая админ-команда</h3>
+        <p>Админ регистрируется командой <code style="font-family:monospace;">/admin lacuna-admin-2026</code>. После — все новые заявки прилетают в его личный чат с именем и телефоном клиента.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔒</div>
+        <h3>FSM-состояния</h3>
+        <p>Конечный автомат aiogram гарантирует что клиент не «сломает» сценарий — каждый шаг помнит контекст и валидирует ввод (например телефон только в формате +7…).</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🐍</div>
+        <h3>~530 строк Python 3.12</h3>
+        <p>Чистый, читабельный код без сторонних фреймворков. Легко допилить под другую нишу: барбершоп, СПА, репетитор, автомойка.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech">
+  <div class="container">
+    <div class="tech-grid">
+      <div>
+        <div class="eyebrow">Стек и характеристики</div>
+        <h2>Под капотом</h2>
+        <p>Бот построен на современной асинхронной архитектуре. Один процесс способен держать сотни одновременных диалогов на минимальном железе.</p>
+      </div>
+      <ul>
+        <li><b>Язык</b> <span>Python 3.12</span></li>
+        <li><b>Bot framework</b> <span>aiogram 3.13</span></li>
+        <li><b>Хранилище</b> <span>SQLite (sqlite3 std lib)</span></li>
+        <li><b>Шедулер</b> <span>APScheduler 3.10</span></li>
+        <li><b>FSM</b> <span>aiogram MemoryStorage</span></li>
+        <li><b>Параллелизм</b> <span>asyncio · long polling</span></li>
+        <li><b>Размер кода</b> <span>~530 LOC, 1 файл</span></li>
+        <li><b>Нагрузка</b> <span>до ~500 диалогов/час</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="eyebrow">Заказать такого же</div>
+    <h2>Под вашу нишу за 5 рабочих дней</h2>
+    <p>Адаптирую сценарий, тексты, услуги и расписание под ваш бизнес. Барбершоп, СПА, автомойка, репетитор, автосервис — везде заходит. Цена — от 12 000 ₽ за стандартный сценарий.</p>
+    <div class="cta-row">
+      <a href="https://t.me/makstheonly" class="btn btn-tg" target="_blank" rel="noopener">Обсудить проект →</a>
+      <a href="https://makstheonly.ru/#contact" class="btn btn-ghost">Что ещё умею</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Это работа из портфолио <a href="https://makstheonly.ru">makstheonly.ru</a> · Свяжитесь со мной в <a href="https://t.me/makstheonly" target="_blank" rel="noopener">Telegram</a></p>
+</footer>
+
+</body>
+</html>

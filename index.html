@@ -470,57 +470,60 @@
       </a>
     </div>
 
-    <!-- Бонус: Telegram-бот -->
+    <!-- Портфолио 05: реальный Telegram-бот LACUNA -->
     <div class="case">
       <div class="case-text">
-        <div class="case-no">+ TELEGRAM-БОТ</div>
-        <h3>Telegram-бот записи в барбершоп</h3>
-        <p class="desc">Бот для записи к мастерам на конкретное время. Полный сценарий за 30 секунд: услуга → мастер → день → окно → телефон → подтверждение. Админ получает заявку моментально, клиент — напоминание за сутки.</p>
+        <div class="case-no">ПОРТФОЛИО 05 · ЖИВОЙ БОТ</div>
+        <h3>Telegram-бот записи в студию маникюра LACUNA</h3>
+        <p class="desc">Реальный работающий бот, не мокап. Открой <a href="https://t.me/lacuna_studio_bot" target="_blank" rel="noopener" style="color:#4ade80;text-decoration:underline;">@lacuna_studio_bot</a> в Telegram и пройди весь сценарий записи: услуга → день → время → имя → телефон → подтверждение. Админ получает заявку в свой чат, клиент — напоминание за сутки.</p>
         <ul class="features">
-          <li>Воронка записи в 5 шагов с inline-кнопками</li>
-          <li>Уведомление админу в чат при каждой новой заявке</li>
-          <li>Автонапоминание клиенту за 24 часа до визита</li>
-          <li>Команда /мои_записи и /отменить</li>
-          <li>База в Google Sheets — админ видит всё в одной таблице</li>
+          <li>FSM-сценарий записи в 6 шагов с inline-кнопками</li>
+          <li>Проверка пересечений: нельзя записаться на занятый слот</li>
+          <li>Уведомление админу в личный чат на каждую новую заявку</li>
+          <li>Авто-напоминание клиенту за 24 часа до визита</li>
+          <li>Команды /start, /отменить, /admin &lt;secret&gt;</li>
+          <li>База на SQLite + APScheduler в одном Python-процессе</li>
         </ul>
         <div class="meta">
-          <div><b>Стек:</b> Python · aiogram 3 · APScheduler</div>
-          <div><b>Срок:</b> 5 дней</div>
-          <div><b>Бюджет:</b> 25 000 ₽</div>
+          <div><b>Стек:</b> Python 3.12 · aiogram 3 · SQLite · APScheduler</div>
+          <div><b>Срок:</b> 1 день</div>
+          <div><b>Бюджет:</b> от 12 000 ₽</div>
         </div>
         <div class="case-ctas">
-          <a href="#contact" class="btn btn-primary">Хочу такой же →</a>
+          <a href="https://t.me/lacuna_studio_bot" class="btn btn-primary" target="_blank" rel="noopener">Открыть бота в Telegram →</a>
+          <a href="/portfolio/5/" class="btn btn-ghost">Подробнее о боте</a>
         </div>
       </div>
-      <div class="case-img bot-mock">
+      <a href="/portfolio/5/" class="case-img bot-mock">
         <div class="topbar">
-          <div class="ava">Б</div>
-          <div class="name">БРИТАЯ · бот записи<small>в сети</small></div>
+          <div class="ava" style="background:linear-gradient(135deg,#2aabee,#229ed9);">L</div>
+          <div class="name">LACUNA Studio · бот записи<small>в сети</small></div>
         </div>
-        <div class="msg">Привет! Это бот <b>БРИТАЯ</b> — мужской парикмахерской на Тверской. Здесь можно записаться к мастеру за минуту.</div>
+        <div class="msg">Здравствуйте! Это бот <b>LACUNA Studio</b> — студии маникюра в Рязани. Запись на удобное время за 30 секунд.</div>
         <div class="btns">
-          <div class="btn-tg">✂ Записаться</div>
+          <div class="btn-tg">💅 Записаться</div>
           <div class="btn-tg">📋 Мои записи</div>
-          <div class="btn-tg">💰 Цены</div>
           <div class="btn-tg">📍 Адрес</div>
         </div>
-        <div class="msg me">✂ Записаться</div>
-        <div class="msg">Выбери услугу:</div>
+        <div class="msg me">💅 Записаться</div>
+        <div class="msg">Выберите услугу:</div>
         <div class="btns">
-          <div class="btn-tg">✂ Стрижка · 1500 ₽</div>
-          <div class="btn-tg">🪒 Борода · 1200 ₽</div>
-          <div class="btn-tg">✨ Стрижка+борода · 2500 ₽</div>
-          <div class="btn-tg">👑 Бритьё · 2000 ₽</div>
+          <div class="btn-tg">🤍 Классический · 1200 ₽</div>
+          <div class="btn-tg">💅 Маникюр+гель · 2200 ₽</div>
+          <div class="btn-tg">💎 Моделирование · 3400 ₽</div>
+          <div class="btn-tg">🦶 Педикюр · 2600 ₽</div>
         </div>
-        <div class="msg me">✨ Стрижка + борода</div>
-        <div class="msg">Какой мастер?</div>
+        <div class="msg me">💅 Маникюр + гель-лак</div>
+        <div class="msg">Выберите день:</div>
         <div class="btns">
-          <div class="btn-tg">Алексей</div>
-          <div class="btn-tg">Михаил</div>
-          <div class="btn-tg">Дмитрий</div>
-          <div class="btn-tg">Любой</div>
+          <div class="btn-tg">Пн</div>
+          <div class="btn-tg">Вт</div>
+          <div class="btn-tg">Ср</div>
+          <div class="btn-tg">Чт</div>
+          <div class="btn-tg">Пт</div>
+          <div class="btn-tg">Сб</div>
         </div>
-      </div>
+      </a>
     </div>
 
   </div>

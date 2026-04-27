@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>LACUNA — студия маникюра в Рязани</title>
+<meta name="description" content="LACUNA — студия маникюра и педикюра в центре Рязани. Анна Соколова, частный мастер с 9-летним опытом. Стерильность, спокойствие, аккуратные руки." />
+<meta property="og:title" content="LACUNA — студия маникюра" />
+<meta property="og:description" content="Маникюр, педикюр, моделирование. Запись в WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #fbf7f3;
+    --bg-2: #f4ece4;
+    --bg-3: #ebe0d4;
+    --paper: #ffffff;
+    --ink: #2a1f24;
+    --ink-soft: #56474d;
+    --muted: #8a7c7f;
+    --rose: #c98a8a;
+    --rose-deep: #a86a6a;
+    --gold: #b89968;
+    --line: #e1d3c6;
+    --radius: 4px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink-soft);
+    line-height: 1.65;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .serif {
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+  }
+  h1 { font-size: clamp(44px, 6.5vw, 88px); line-height: 1.04; font-weight: 500; }
+  h2 { font-size: clamp(32px, 4.6vw, 56px); line-height: 1.1; margin-bottom: 16px; }
+  h3 { font-size: clamp(22px, 2.4vw, 28px); line-height: 1.25; margin-bottom: 8px; }
+  p { font-size: 16px; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* Header */
+  header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(251, 247, 243, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; max-width: 1280px; margin: 0 auto;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  .logo small { font-size: 10px; letter-spacing: 0.4em; color: var(--muted); display: block; margin-top: -4px; text-transform: uppercase; }
+  nav ul { display: flex; gap: 36px; list-style: none; }
+  nav a { font-size: 13px; font-weight: 400; letter-spacing: 0.04em; color: var(--ink-soft); transition: color .2s; }
+  nav a:hover { color: var(--rose-deep); }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    border-radius: var(--radius);
+    transition: all .25s ease;
+    cursor: pointer; border: none;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--bg);
+  }
+  .btn-primary:hover { background: var(--rose-deep); }
+  .btn-outline {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--bg); }
+
+  @media (max-width: 880px) { nav ul { display: none; } }
+
+  /* Hero */
+  .hero {
+    padding: 80px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .hero-text .eyebrow {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--rose-deep); margin-bottom: 28px;
+  }
+  .hero-text h1 i {
+    font-style: italic; color: var(--rose-deep); font-weight: 400;
+  }
+  .hero-text .lead {
+    font-size: 19px; color: var(--ink-soft); margin-top: 28px; max-width: 480px;
+  }
+  .hero-cta { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+  .hero-image {
+    position: relative;
+    aspect-ratio: 4/5;
+    background:
+      url('https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    border-radius: 2px;
+  }
+  .hero-image::after {
+    content: ""; position: absolute; left: -24px; bottom: -24px; width: 120px; height: 120px;
+    border: 1px solid var(--rose); z-index: -1;
+  }
+
+  @media (max-width: 880px) {
+    .hero { padding: 50px 0 70px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+    .hero-image { aspect-ratio: 5/4; }
+  }
+
+  /* Section base */
+  section { padding: 100px 0; }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+  .section-head .eyebrow {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
+  }
+  .section-head p { color: var(--muted); margin-top: 12px; }
+
+  .alt { background: var(--bg-2); }
+
+  /* Services */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .service {
+    background: var(--paper);
+    padding: 48px 36px;
+    transition: background .25s;
+  }
+  .service:hover { background: var(--bg-2); }
+  .service .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; color: var(--rose); letter-spacing: 0.2em;
+  }
+  .service h3 { margin-top: 20px; margin-bottom: 14px; }
+  .service p { font-size: 14px; line-height: 1.65; }
+  .service .price {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .service .price small { font-size: 12px; color: var(--muted); font-family: 'Inter', sans-serif; letter-spacing: 0.05em; }
+
+  @media (max-width: 880px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  /* About */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px;
+    align-items: center;
+  }
+  .about-image {
+    aspect-ratio: 4/5;
+    background:
+      url('https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1100&q=80') center/cover no-repeat;
+    border-radius: 2px;
+  }
+  .about-text h2 i { font-style: italic; color: var(--rose-deep); }
+  .about-text .signature {
+    margin-top: 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--ink);
+    font-size: 22px;
+  }
+  .about-text .signature small { display: block; font-family: 'Inter', sans-serif; font-style: normal; font-size: 12px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 4px; }
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid var(--line);
+  }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; color: var(--ink); line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px; }
+
+  @media (max-width: 880px) {
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* Pricing list */
+  .pricing-list { max-width: 760px; margin: 0 auto; }
+  .price-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 22px 0;
+    border-bottom: 1px dashed var(--line);
+    gap: 24px;
+  }
+  .price-row:last-child { border-bottom: none; }
+  .price-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; color: var(--ink); flex: 0 0 auto;
+  }
+  .price-name small { display: block; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted); margin-top: 4px; font-weight: 400; }
+  .price-dots { flex: 1; border-bottom: 1px dotted var(--line); margin-bottom: 6px; }
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; color: var(--rose-deep); white-space: nowrap;
+  }
+
+  /* Reviews */
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  }
+  .review {
+    background: var(--paper);
+    padding: 36px 32px;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+  }
+  .review .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px; color: var(--rose); line-height: 0.7; height: 32px;
+  }
+  .review p {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px; color: var(--ink); margin: 16px 0 28px;
+  }
+  .review .author {
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+  }
+  .review .author strong { display: block; color: var(--ink-soft); font-weight: 500; margin-bottom: 4px; letter-spacing: 0.05em; }
+
+  @media (max-width: 880px) { .reviews-grid { grid-template-columns: 1fr; } }
+
+  /* Contact */
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  }
+  .contact-info p { margin-bottom: 12px; }
+  .contact-info .label {
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-top: 28px; margin-bottom: 6px;
+  }
+  .contact-info .value {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink); font-size: 22px;
+  }
+
+  form { display: flex; flex-direction: column; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  }
+  .field input, .field textarea, .field select {
+    padding: 14px 16px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    transition: border-color .2s;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus {
+    outline: none;
+    border-color: var(--rose);
+  }
+
+  @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+  /* Footer */
+  footer {
+    background: var(--ink);
+    color: var(--bg-2);
+    padding: 64px 0 36px;
+    margin-top: 0;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+    padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  footer .logo { color: var(--bg); }
+  footer h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 18px;
+  }
+  footer ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  footer a { color: rgba(255,255,255,0.7); font-size: 14px; transition: color .2s; }
+  footer a:hover { color: var(--rose); }
+  .copyright {
+    margin-top: 36px;
+    font-size: 12px; color: rgba(255,255,255,0.4);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  @media (max-width: 880px) { .footer-grid { grid-template-columns: 1fr; gap: 36px; } }
+</style>
+</head>
+<body>
+<a href="https://makstheonly.ru/#cases" class="mts-back-bar" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 16px;background:#13141a;color:#ededed;text-decoration:none;font:500 13px/1.4 system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;border-bottom:1px solid #2d2f3a;letter-spacing:0.01em;">
+  <span style="color:#9498a4;">←</span>
+  <span>Это пример работы из портфолио <b style="color:#4ade80;font-weight:600;">makstheonly.ru</b></span>
+  <span style="color:#9498a4;">·</span>
+  <span style="color:#9498a4;">Студия маникюра LACUNA</span>
+</a>
+
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      LACUNA
+      <small>STUDIO · РЯЗАНЬ</small>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#about">О мастере</a></li>
+        <li><a href="#pricing">Цены</a></li>
+        <li><a href="#reviews">Отзывы</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-primary">Записаться</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="eyebrow">Студия маникюра · Рязань</div>
+        <h1>Аккуратные руки —<br>как <i>тихая роскошь</i>.</h1>
+        <p class="lead">Камерная студия в центре города. Один мастер, один кабинет, один час — только вам. Полный цикл стерилизации в крафт-пакетах при вас.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Записаться к мастеру</a>
+          <a href="#pricing" class="btn btn-outline">Прайс-лист</a>
+        </div>
+      </div>
+      <div class="hero-image"></div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Услуги</div>
+      <h2>Что я делаю</h2>
+      <p>Базовый список — каждая услуга обсуждается на первой встрече индивидуально.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service">
+        <div class="num">— I</div>
+        <h3>Классический маникюр</h3>
+        <p>Аппаратная обработка кутикулы, оформление формы, питательное масло. Без покрытия — для тех, кто любит свой натуральный ноготь.</p>
+        <div class="price">от 1 200 ₽<br><small>1 час</small></div>
+      </div>
+      <div class="service">
+        <div class="num">— II</div>
+        <h3>Маникюр с покрытием гель-лак</h3>
+        <p>Аппаратная техника, выкладка формы, гель-лак на 3–4 недели. Палитра OPI, Kodi, Patrisa Nail. Покрытие однотонное или с дизайном.</p>
+        <div class="price">от 2 200 ₽<br><small>2 часа</small></div>
+      </div>
+      <div class="service">
+        <div class="num">— III</div>
+        <h3>Моделирование и наращивание</h3>
+        <p>Укрепление натуральной пластины гелем или акригелем, восстановление длины. На свободный край или на формы.</p>
+        <div class="price">от 3 400 ₽<br><small>2,5 часа</small></div>
+      </div>
+      <div class="service">
+        <div class="num">— IV</div>
+        <h3>Педикюр аппаратный</h3>
+        <p>Сухой комбинированный педикюр без воды и распариваний. Обработка трещин и натоптышей. Покрытие по желанию.</p>
+        <div class="price">от 2 600 ₽<br><small>1,5 часа</small></div>
+      </div>
+      <div class="service">
+        <div class="num">— V</div>
+        <h3>Восстановление после акрила</h3>
+        <p>Бережное снятие акрила или геля без спила натурального ногтя. Восстановление пластины маслами и кератинами.</p>
+        <div class="price">от 1 800 ₽<br><small>1 час</small></div>
+      </div>
+      <div class="service">
+        <div class="num">— VI</div>
+        <h3>Дизайн и роспись</h3>
+        <p>Авторская роспись, втирки, фольга, стемпинг, акварель. Цена согласовывается до начала по сложности и количеству ногтей.</p>
+        <div class="price">от 300 ₽<br><small>за палец</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image"></div>
+      <div class="about-text">
+        <div class="eyebrow">О мастере</div>
+        <h2>Анна Соколова, <i>9 лет за креслом</i></h2>
+        <p>Закончила школу «Подология» в Москве, прошла специализацию по аппаратному педикюру у Натальи Туровой. Работаю исключительно одна, без помощниц и сменщиц — это значит, что качество и стерильность никогда не плавают от смены к смене.</p>
+        <p style="margin-top: 16px">Записываю на удобное вам время, не на «свободное у меня». Перерыв между клиентами — минимум 30 минут на полную стерилизацию.</p>
+        <div class="signature">Анна
+          <small>Мастер · LACUNA Studio</small>
+        </div>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">9</div>
+            <div class="stat-label">Лет опыта</div>
+          </div>
+          <div>
+            <div class="stat-num">740+</div>
+            <div class="stat-label">Постоянных клиентов</div>
+          </div>
+          <div>
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Стерильность</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Прайс-лист</div>
+      <h2>Цены</h2>
+      <p>Все цены — за услугу под ключ, включая снятие предыдущего покрытия и базовый дизайн.</p>
+    </div>
+    <div class="pricing-list">
+      <div class="price-row">
+        <div class="price-name">Классический маникюр<small>без покрытия · 1 ч</small></div>
+        <div class="price-dots"></div>
+        <div class="price-amount">1 200 ₽</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Маникюр + гель-лак<small>аппаратная техника · 2 ч</small></div>
+        <div class="price-dots"></div>
+        <div class="price-amount">2 200 ₽</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Маникюр + укрепление<small>гелем или акригелем · 2 ч</small></div>
+        <div class="price-dots"></div>
+        <div class="price-amount">2 800 ₽</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Моделирование на формах<small>наращивание длины · 2,5 ч</small></div>
+        <div class="price-dots"></div>
+        <div class="price-amount">3 400 ₽</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Педикюр аппаратный<small>без воды · 1,5 ч</small></div>
+        <div class="price-dots"></div>
+        <div class="price-amount">2 600 ₽</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Педикюр + гель-лак<small>с покрытием · 2 ч</small></div>
+        <div class="price-dots"></div>
+        <div class="price-amount">3 400 ₽</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Снятие чужого покрытия<small>без последующего сервиса</small></div>
+        <div class="price-dots"></div>
+        <div class="price-amount">600 ₽</div>
+      </div>
+      <div class="price-row">
+        <div class="price-name">Дизайн (авторская роспись)<small>за палец</small></div>
+        <div class="price-dots"></div>
+        <div class="price-amount">300 ₽</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Отзывы</div>
+      <h2>Что говорят</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="quote-mark">“</div>
+        <p>Хожу к Ане год, гель-лак держится по 4 недели без сколов. Всегда чисто, всегда вовремя, всегда без болтовни если хочется тишины.</p>
+        <div class="author">
+          <strong>Мария К.</strong>
+          Постоянный клиент
+        </div>
+      </div>
+      <div class="review">
+        <div class="quote-mark">“</div>
+        <p>Бережно сняла акрил, который я носила полтора года, и восстановила ногти — уже не ломаются. Мастер с очень чистой работой.</p>
+        <div class="author">
+          <strong>Екатерина Л.</strong>
+          Восстановление</div>
+      </div>
+      <div class="review">
+        <div class="quote-mark">“</div>
+        <p>Записывалась на педикюр без особых ожиданий, ушла впечатлённая. Всё под контролем, без воды, без боли, без «ой простите задела».</p>
+        <div class="author">
+          <strong>Ольга С.</strong>
+          Аппаратный педикюр
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="eyebrow">Контакты</div>
+        <h2>Запись и адрес</h2>
+        <p>Удобнее всего — в WhatsApp или Telegram. Ответ обычно в течение 30 минут в рабочее время.</p>
+
+        <div class="label">Адрес</div>
+        <div class="value">Соборная, 18 — кабинет 4</div>
+
+        <div class="label">Часы работы</div>
+        <div class="value">Пн–Сб · 10:00–20:00<br>Вс · по предварительной записи</div>
+
+        <div class="label">Связь</div>
+        <div class="value">+7 (920) 555-22-08<br>WhatsApp · Telegram</div>
+      </div>
+
+      <form onsubmit="event.preventDefault(); alert('Заявка отправлена. Анна ответит в течение 30 минут.'); this.reset();">
+        <div class="field">
+          <label>Как к вам обращаться</label>
+          <input type="text" required placeholder="Имя" />
+        </div>
+        <div class="field">
+          <label>Телефон или Telegram</label>
+          <input type="text" required placeholder="+7 ___ ___ __ __" />
+        </div>
+        <div class="field">
+          <label>Какая услуга интересна</label>
+          <select>
+            <option>Классический маникюр</option>
+            <option>Маникюр с гель-лаком</option>
+            <option>Моделирование</option>
+            <option>Педикюр</option>
+            <option>Восстановление</option>
+            <option>Не уверена — подскажите</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Когда удобно (необязательно)</label>
+          <input type="text" placeholder="Например: будни вечером" />
+        </div>
+        <button type="submit" class="btn btn-primary">Записаться</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="color:#fbf7f3">
+          LACUNA
+          <small style="color: rgba(255,255,255,0.5)">STUDIO · РЯЗАНЬ</small>
+        </div>
+        <p style="margin-top: 20px; color: rgba(255,255,255,0.6); max-width: 360px; font-size: 14px;">
+          Камерная студия маникюра. Один мастер — Анна Соколова. Запись только индивидуальная, без сменщиц.
+        </p>
+      </div>
+      <div>
+        <h4>Сайт</h4>
+        <ul>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#about">О мастере</a></li>
+          <li><a href="#pricing">Прайс-лист</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Связь</h4>
+        <ul>
+          <li><a href="tel:+79205552208">+7 (920) 555-22-08</a></li>
+          <li><a href="https://wa.me/79205552208">WhatsApp</a></li>
+          <li><a href="https://t.me/lacuna_studio">Telegram</a></li>
+          <li><a href="mailto:hi@lacuna-studio.ru">hi@lacuna-studio.ru</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <span>© LACUNA Studio · Рязань · ИП Соколова Анна</span>
+      <span>Сайт собрал Максим · makstheonly.ru</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
